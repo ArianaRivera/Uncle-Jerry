@@ -28,7 +28,7 @@ var mainState = {
         this.cursor = game.input.keyboard.createCursorKeys();
         
         //creates the player in the middle of the game
-        this.player = game.add.sprite(70, 100, 'player');
+        this.player = game.add.sprite(70, 150, 'player');
         this.score = 0;
         
         //sets the grevity of the player
@@ -39,6 +39,11 @@ var mainState = {
         this.coins = game.add.group();
         this.enemies = game.add.group();
         this.wall2 = game.add.group();
+        
+        this.danger = game.add.sprite(30,95,"enemy");
+        this.enemies.add(this.danger)
+        this.tween = game.add.tween(this.danger).to({x:400,y:95},1000,"Linear",true,0,-1)
+        this.tween.yoyo(true,0)
         
         var level = [
             '                                        ',
