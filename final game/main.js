@@ -55,7 +55,11 @@ var mainState = {
             '                                        ',             
             '                      !!                ',
             '           o            o               ',
+<<<<<<< HEAD
             '      x    !                      n        ',             
+=======
+            '      x    !                            ',             
+>>>>>>> 50c8721f97e3915fd6eb62840cee5fc42dbce1be
             '                            xxxxxx      ',           
             '   xxxxxx        o   !     xxxxxxx      ',             
             'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
