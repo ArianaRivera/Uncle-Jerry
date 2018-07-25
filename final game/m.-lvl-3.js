@@ -1,5 +1,5 @@
 var death = 0;
-var mainState = {
+var thirdLevel = {
     preload: function(){
         game.load.image('player', 'media/220px-Timon_(The_Lion_King).png')
         game.load.image('wall', 'media/blocks.png')
@@ -13,7 +13,7 @@ var mainState = {
     create: function(){
         this.isCrouching = false
         //set the game's background color
-        game.add.tileSprite(0,0,9852,480,'background');
+        game.add.tileSprite(0,0,852,480,'background');
         
         var text = game.add.text(0,0,death, 
             {
@@ -38,7 +38,7 @@ var mainState = {
         this.walls = game.add.group();
         this.coins = game.add.group();
         this.enemies = game.add.group();
-        this.wall2 = game.add.group();
+        this.walls2 = game.add.group();
         
         this.danger = game.add.sprite(30,95,"enemy");
         this.enemies.add(this.danger)
@@ -62,7 +62,7 @@ var mainState = {
             '                    xxxx      o         ',
             '      xxxx                              ',             
             '                                        ',           
-            '    !!!             !       !!!         ',             
+            '    !!!             !                   ',             
             'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
             
         ]
@@ -85,7 +85,7 @@ var mainState = {
                         
                 }else if(level[i][j] === 'e'){
                     var wall2 = game.add.sprite(30+20*j, 30+20*i, 'wall2');
-                    this.wall2.add(wall2); 
+                    this.walls2.add(wall2); 
                 
                 }else if(level[i][j] === 'z'){
                     this.flagpole = game.add.sprite(30+20*j, 30+20*i, 'flagpole');
@@ -150,7 +150,3 @@ var mainState = {
     }
     
 }
-
-var game = new Phaser.Game(852,480);
-game.state.add('main', mainState);
-game.state.start('main');
