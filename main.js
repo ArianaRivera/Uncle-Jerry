@@ -1,16 +1,12 @@
 var death = 0;
 var mainState = {
-    preload: function () {
+    preload: function(){
         game.load.image('player', 'media/220px-Timon_(The_Lion_King).png')
         game.load.image('wall', 'media/blocks.png')
-<<<<<<< HEAD
-        game.load.image('coin', 'media/gold_nugget.png') 
-=======
         game.load.image('coin', 'media/gold_nugget.png')
         game.load.image('enemy', 'media/legolus.png') 
->>>>>>> 0a91b8facc423be45dd6378c25894e875945c980
         game.load.image('background', 'media/background.png')
-        game.load.image('enemy','media/legolus.png')
+        game.load.image('wall2', 'media/wall.png')
         game.load.image('flagpole', 'media/pixil-frame-0.png')
     },
     
@@ -55,11 +51,11 @@ var mainState = {
             '                                 z      ',            
             '                                     o  ',            
             '                                       ',             
-            '                                        ',           
-            '                                        ',             
-            '                      !!                ',
-            '           o            o               ',
-            '      x    !                            ',             
+            '                                 x      ',           
+            '                                xx      ',             
+            '                      !!       xxx      ',
+            '           o            o     xxxx      ',
+            '      x    !                 xxxxx      ',             
             '                            xxxxxx      ',           
             '   xxxxxx        o   !     xxxxxxx      ',             
             'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
@@ -111,7 +107,11 @@ var mainState = {
         //check for player and wall2 overlapping
         game.physics.arcade.overlap(this.player, this.wall2, this.takeWall2, null, this);
         if(this.score >= 4){
-            game.state.start('second')
+            var text = game.add.text(game.world.centerX,game.world.centerY, "YOU WON", 
+            {
+                fill:'white'
+            });
+            text.anchor.setTo(0.5,0.5)
         }
         if(this.cursor.left.isDown){
            this.player.body.velocity.x = -200;
@@ -141,7 +141,11 @@ var mainState = {
     
     restart: function(){
         death++;
-        game.state.start('first')
+        game.state.start('main')
     }
     
 }
+
+var game = new Phaser.Game(852,480);
+game.state.add('main', mainState);
+game.state.start('main');
