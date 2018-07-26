@@ -1,5 +1,5 @@
 var death = 0;
-var mainState = {
+var secondLevel = {
     preload: function(){
         game.load.image('player', 'media/220px-Timon_(The_Lion_King).png')
         game.load.image('wall', 'media/blocks.png')
@@ -13,9 +13,9 @@ var mainState = {
     create: function(){
         this.isCrouching = false
         //set the game's background color
-        game.add.tileSprite(0,0,9852,480,'background');
+        game.add.tileSprite(0,0,852,480,'background');
         
-        var text = game.add.text(0,0,death), 
+        var text = game.add.text(0,0,death, 
             {
                 fill:'black'
         });
@@ -54,15 +54,15 @@ var mainState = {
             '                                        ',            
             '                                        ',            
             '                                 z      ',            
-            '                                     o  ',            
-            '                                       ',             
-            '                                 x      ',           
-            '                                xx      ',             
-            '                      !!       xxx      ',
-            '           o            o     xxxx      ',
-            '      x    !                 xxxxx      ',             
-            '                            xxxxxx      ',           
-            '   xxxxxx        o   !     xxxxxxx      ',             
+            '                                        ',            
+            '                  o                     ',             
+            '                             o            ',           
+            '                         xxx            ',             
+            '                  xxx  o                ',
+            '           xx                           ',
+            '     x         !!      xxx   !          ',             
+            '                                 o      ',           
+            '     !         !!!!!!!!!                ',             
             'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
             
         ]
@@ -112,11 +112,8 @@ var mainState = {
         //check for player and wall2 overlapping
         game.physics.arcade.overlap(this.player, this.wall2, this.takeWall2, null, this);
         if(this.score >= 4){
-            var text = game.add.text(game.world.centerX,game.world.centerY, "YOU WON", 
-            {
-                fill:'white'
-            });
-            text.anchor.setTo(0.5,0.5)
+            game.state.start('third')
+        
         }
         if(this.cursor.left.isDown){
            this.player.body.velocity.x = -200;
@@ -146,11 +143,7 @@ var mainState = {
     
     restart: function(){
         death++;
-        game.state.start('main')
+        game.state.start('second')
     }
     
 }
-
-var game = new Phaser.Game(852,480);
-game.state.add('main', mainState);
-game.state.start('main');
