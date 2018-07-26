@@ -146,7 +146,7 @@ var thirdLevel = {
     
     restart: function(){
         death++;
-        game.state.start('main')
+        game.state.start('third')
     }
     
 }
