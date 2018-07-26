@@ -1,6 +1,6 @@
 var death = 0;
-var mainState = {
-    preload: function () {
+var secondLevel = {
+    preload: function(){
         game.load.image('player', 'media/220px-Timon_(The_Lion_King).png')
         game.load.image('wall', 'media/blocks.png')
         game.load.image('coin', 'media/gold_nugget.png')
@@ -13,7 +13,7 @@ var mainState = {
     create: function(){
         this.isCrouching = false
         //set the game's background color
-        game.add.tileSprite(0,0,9852,480,'background');
+        game.add.tileSprite(0,0,852,480,'background');
         
         var text = game.add.text(0,0,death, 
             {
@@ -28,7 +28,7 @@ var mainState = {
         this.cursor = game.input.keyboard.createCursorKeys();
         
         //creates the player in the middle of the game
-        this.player = game.add.sprite(70, 100, 'player');
+        this.player = game.add.sprite(70, 150, 'player');
         this.score = 0;
         
         //sets the grevity of the player
@@ -40,6 +40,11 @@ var mainState = {
         this.enemies = game.add.group();
         this.wall2 = game.add.group();
         
+        this.danger = game.add.sprite(30,95,"enemy");
+        this.enemies.add(this.danger)
+        this.tween = game.add.tween(this.danger).to({x:400,y:95},1000,"Linear",true,0,-1)
+        this.tween.yoyo(true,0)
+        
         var level = [
             '                                        ',
             '                                        ',            
@@ -47,17 +52,17 @@ var mainState = {
             '                                        ',           
             '                                        ',            
             '                                        ',            
-            '                                        ',            
+            '  o                                     ',            
             '                                 z      ',            
-            '                                     o  ',            
-            '                                       ',             
-            '                                        ',           
+            '                                        ',            
+            '                              o         ',             
+            '   ! xxxx                 !!!!!         ',           
             '                                        ',             
-            '                      !!                ',
-            '           o            o               ',
-            '      x    !                            ',             
-            '                            xxxxxx      ',           
-            '   xxxxxx        o   !     xxxxxxx      ',             
+            '             o            !             ',
+            '             x        xxxxxxxxxx        ',
+            '                        !    !!!!   !!  ',             
+            'xxxxxxxxx                   o            ',           
+            '  !!!!!!!!!!!!!!!!     !          !     ',             
             'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
             
         ]
@@ -107,7 +112,8 @@ var mainState = {
         //check for player and wall2 overlapping
         game.physics.arcade.overlap(this.player, this.wall2, this.takeWall2, null, this);
         if(this.score >= 4){
-            game.state.start('second')
+            game.state.start('third')
+        
         }
         if(this.cursor.left.isDown){
            this.player.body.velocity.x = -200;
@@ -137,7 +143,7 @@ var mainState = {
     
     restart: function(){
         death++;
-        game.state.start('first')
+        game.state.start('second')
     }
     
 }
