@@ -112,11 +112,7 @@ var thirdLevel = {
         //check for player and wall2 overlapping
         game.physics.arcade.overlap(this.player, this.wall2, this.takeWall2, null, this);
         if(this.score >= 4){
-            var text = game.add.text(game.world.centerX,game.world.centerY, "YOU WON", 
-            {
-                fill:'white'
-            });
-            text.anchor.setTo(0.5,0.5)
+            game.state.start('fourth')
         }
         if(this.cursor.left.isDown){
            this.player.body.velocity.x = -200;

@@ -3,10 +3,9 @@ var mainState = {
     preload: function () {
         game.load.image('player', 'media/220px-Timon_(The_Lion_King).png')
         game.load.image('wall', 'media/blocks.png')
-        game.load.image('coin', 'media/gold_nugget.png')
-        game.load.image('enemy', 'media/karlen.png') 
+        game.load.image('coin', 'media/gold_nugget.png') 
         game.load.image('background', 'media/background.png')
-        game.load.image('wall2', 'media/wall.png')
+        game.load.image('enemy','media/legolus.png')
         game.load.image('flagpole', 'media/pixil-frame-0.png')
     },
     

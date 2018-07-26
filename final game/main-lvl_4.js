@@ -1,5 +1,5 @@
-var death = 0;
-var mainState = {
+ var death = 0;
+var fourthLevel = {
     preload: function(){
         game.load.image('player', 'media/220px-Timon_(The_Lion_King).png')
         game.load.image('wall', 'media/blocks.png')
@@ -142,11 +142,7 @@ var mainState = {
     
     restart: function(){
         death++;
-        game.state.start('main')
+        game.state.start('fourth')
     }
     
 }
-
-var game = new Phaser.Game(852,480);
-game.state.add('main', mainState);
-game.state.start('main');
